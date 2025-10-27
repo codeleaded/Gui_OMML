@@ -1,1 +1,12 @@
-\(div,a,b) = \(div,1,\(div,a,b))
+(ul,"Definition of division of 1 by something:")
+(ln)
+(ass,
+    (div,
+        a,
+        b
+    ),
+    (div,
+        1,
+        \(div,a,b)
+    )
+)
