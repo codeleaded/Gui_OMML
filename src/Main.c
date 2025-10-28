@@ -12,7 +12,6 @@
     #error "Platform not supported!"
 #endif
 
-
 // OMML omml;
 // void Setup(AlxWindow* w){
 //     omml = OMML_New((Rect){ 10.0f,10.0f,500.0f,1000.0f });
@@ -32,6 +31,7 @@
 
 int main(){
     OMML omml = OMML_New((Rect){ 10.0f,10.0f,500.0f,1000.0f });
+	OMML_Text(&omml,"(pow,a,b)");
 	OMML_File(&omml,"./data/Text.omml");
 	OMML_Free(&omml);
     return 0;
