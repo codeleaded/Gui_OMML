@@ -30,10 +30,8 @@
 // }
 
 int main(){
-    OMML omml = OMML_New((Rect){ 10.0f,10.0f,500.0f,1000.0f });
-	OMML_Text(&omml,"(pow,a,b)");
-	OMML_Text(&omml,"(div,(pow,a,b),b)");
-	OMML_File(&omml,"./data/Text.omml");
+    OMML omml = OMML_New("./code/Main.omml","./bin");
+	OMML_Build(&omml);
 	OMML_Free(&omml);
     return 0;
 }
