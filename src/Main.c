@@ -30,8 +30,11 @@
 // }
 
 int main(){
-    OMML omml = OMML_New("./code/Main.omml","./bin");
+    OMML omml = OMML_New(1000,1600,"./code/Main.omml","./bin");
 	OMML_Build(&omml);
+
+    Png_SaveARGB("./data/Output.png",omml.gc.img,omml.gc.w,omml.gc.h);
+
 	OMML_Free(&omml);
     return 0;
 }
