@@ -37,7 +37,7 @@ void Update(AlxWindow* w){
     RenderSprite(&omml.gc,100.0f,50.0f);
 }
 void Delete(AlxWindow* w){
-    //Png_SaveARGB("./data/Output.png",omml.gc.img,omml.gc.w,omml.gc.h);
+    Png_SaveARGB("./data/Output.png",omml.gc.img,omml.gc.w,omml.gc.h);
     OMML_Free(&omml);
 }
 int main(){
