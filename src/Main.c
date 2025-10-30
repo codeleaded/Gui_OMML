@@ -1,9 +1,9 @@
 #if defined(__linux__) && !defined(_WIN32)
     #include "/home/codeleaded/System/Static/Library/OMML.h"
-    //#include "/home/codeleaded/System/Static/Library/WindowEngine1.0.h"
+    #include "/home/codeleaded/System/Static/Library/WindowEngine1.0.h"
 #elif defined(_WIN32) || defined(_WIN64)
     #include "/home/codeleaded/System/Static/Library/OMML.h"
-    //#include "/home/codeleaded/System/Static/Library/WindowEngine1.0.h"
+    #include "/home/codeleaded/System/Static/Library/WindowEngine1.0.h"
     //#include "F:/home/codeleaded/System/Static/Library/OMML.h"
     //#include "F:/home/codeleaded/System/Static/Library/WindowEngine1.0.h"
 #elif defined(__APPLE__)
@@ -12,29 +12,36 @@
     #error "Platform not supported!"
 #endif
 
-// OMML omml;
-// void Setup(AlxWindow* w){
-//     omml = OMML_New((Rect){ 10.0f,10.0f,500.0f,1000.0f });
-// 	OMML_File(&omml,"./data/Text.omml");
-// }
-// void Update(AlxWindow* w){
-//     Clear(BLACK);
-// }
-// void Delete(AlxWindow* w){
-//     OMML_Free(&omml);
-// }
-// int main(){
-//     if(Create("Office Math Markup Language (OMML)",2500,1300,1,1,Setup,Update,Delete))
-//         Start();
-//     return 0;
-// }
 
+
+OMML omml;
+double TimePassed;
+
+void Setup(AlxWindow* w){
+    omml = OMML_New(700,1200,"./bin");
+
+    TimePassed = 0.0;
+}
+void Update(AlxWindow* w){
+    TimePassed += w->ElapsedTime;
+    
+    printf("TP: %lf\n",TimePassed);
+    if(TimePassed > 2.0){
+        OMML_Src(&omml,"./code/Main.omml");
+	    OMML_Build(&omml);
+        TimePassed = 0.0;
+    }
+
+    Clear(BLACK);
+
+    RenderSprite(&omml.gc,100.0f,50.0f);
+}
+void Delete(AlxWindow* w){
+    //Png_SaveARGB("./data/Output.png",omml.gc.img,omml.gc.w,omml.gc.h);
+    OMML_Free(&omml);
+}
 int main(){
-    OMML omml = OMML_New(1000,1600,"./code/Main.omml","./bin");
-	OMML_Build(&omml);
-
-    Png_SaveARGB("./data/Output.png",omml.gc.img,omml.gc.w,omml.gc.h);
-
-	OMML_Free(&omml);
+    if(Create("Office Math Markup Language (OMML)",900,1300,1,1,Setup,Update,Delete))
+       Start();
     return 0;
 }
