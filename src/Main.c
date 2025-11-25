@@ -25,7 +25,7 @@ void Setup(AlxWindow* w){
 void Update(AlxWindow* w){
     TimePassed += w->ElapsedTime;
     
-    printf("TP: %lf\n",TimePassed);
+    //printf("TP: %lf\n",TimePassed);
     if(TimePassed > 2.0){
         OMML_Src(&omml,"./code/Main.omml");
 	    OMML_Build(&omml);
